@@ -18,9 +18,9 @@ public class CompanyController {
 	@Autowired
 	private CompanyRepository companyRepository;
 	
-	@GetMapping
+	@GetMapping("/{cnpj}")
 	List<Company> findCompany(@PathVariable String cnpj) {
-		return null;
+		return companyRepository.findByCnpj(cnpj);
 	}
 	
 }
