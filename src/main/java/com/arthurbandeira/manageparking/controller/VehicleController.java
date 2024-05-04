@@ -11,34 +11,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arthurbandeira.manageparking.model.Company;
-import com.arthurbandeira.manageparking.repository.CompanyRepository;
+import com.arthurbandeira.manageparking.model.Vehicle;
+import com.arthurbandeira.manageparking.repository.VehicleRepository;
 
 @RestController
-@RequestMapping("/company")
-public class CompanyController {
+@RequestMapping("/vehicle")
+public class VehicleController {
 
 	@Autowired
-	private CompanyRepository companyRepository;
+	private VehicleRepository vehicleRepository;
 
 	@GetMapping
-	List<Company> findAll() {
-		return companyRepository.findAll();
+	List<Vehicle> find() {
+		return vehicleRepository.findAll();
 	}
 
-	@GetMapping("/{cnpj}")
-	List<Company> findCompany(@PathVariable String cnpj) {
-		return companyRepository.findByCnpj(cnpj);
-	}
-	
 	@PostMapping
-	Company create(@RequestBody Company company) {
-		return companyRepository.save(company);
+	Vehicle create(@RequestBody Vehicle vehicle) {
+		return vehicleRepository.save(vehicle);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	void delete(@PathVariable Long id) {
-		companyRepository.deleteById(id);
+		vehicleRepository.deleteById(id);
 	}
 
 }
