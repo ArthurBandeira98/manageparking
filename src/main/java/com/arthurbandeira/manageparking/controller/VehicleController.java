@@ -12,28 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arthurbandeira.manageparking.model.Vehicle;
-import com.arthurbandeira.manageparking.repository.VehicleRepository;
+import com.arthurbandeira.manageparking.service.VehicleService;
 
 @RestController
 @RequestMapping("/vehicle")
 public class VehicleController {
 
 	@Autowired
-	private VehicleRepository vehicleRepository;
+	private VehicleService vehicleService;
 
 	@GetMapping
-	List<Vehicle> find() {
-		return vehicleRepository.findAll();
+	public List<Vehicle> find() {
+		return vehicleService.find();
 	}
 
 	@PostMapping
-	Vehicle create(@RequestBody Vehicle vehicle) {
-		return vehicleRepository.save(vehicle);
+	public Vehicle create(@RequestBody Vehicle vehicle) {
+		return vehicleService.create(vehicle);
 	}
 
 	@DeleteMapping("/{id}")
-	void delete(@PathVariable Long id) {
-		vehicleRepository.deleteById(id);
+	public void delete(@PathVariable Long id) {
+		vehicleService.delete(id);
 	}
 
 }
