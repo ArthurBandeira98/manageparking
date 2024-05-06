@@ -83,6 +83,7 @@ public class CompanyRepositoryTest {
 		Predicate predicate = mock(Predicate.class);
 		when(criteriaBuilder.and(any())).thenReturn(predicate);
 		when(criteriaBuilder.equal(path, cnpj)).thenReturn(predicate);
+		when(criteriaQuery.select(root)).thenReturn(criteriaQuery);
 		
 		// Criando o Predicate corretamente
 //	    Predicate predicate = criteriaBuilder.equal(root.get("cnpj"), cnpj);
