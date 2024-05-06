@@ -1,9 +1,6 @@
 package com.arthurbandeira.manageparking.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -26,9 +22,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Path;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 @SpringBootTest
@@ -48,12 +41,6 @@ public class CompanyRepositoryTest {
 
 	@Mock
 	private TypedQuery<Company> typedQuery;
-	
-	@Mock
-	private Path<Object> path;
-	
-	@Mock
-	private Expression<Object> express;
 
 	@InjectMocks
 	private CompanyRepositoryImpl companyRepository;
@@ -77,20 +64,7 @@ public class CompanyRepositoryTest {
 		when(entityManager.getCriteriaBuilder()).thenReturn(criteriaBuilder);
 		when(criteriaBuilder.createQuery(Company.class)).thenReturn(criteriaQuery);
 		when(criteriaQuery.from(Company.class)).thenReturn(root);
-		
-		when(root.get("cnpj")).thenReturn(path);
-		
-		Predicate predicate = mock(Predicate.class);
-		when(criteriaBuilder.and(any())).thenReturn(predicate);
-		when(criteriaBuilder.equal(path, cnpj)).thenReturn(predicate);
 		when(criteriaQuery.select(root)).thenReturn(criteriaQuery);
-		
-		// Criando o Predicate corretamente
-//	    Predicate predicate = criteriaBuilder.equal(root.get("cnpj"), cnpj);
-	    
-	    // Configurando o mock para retornar o Predicate criado
-//	    when(criteriaBuilder.equal(root.get("cnpj"), cnpj)).thenReturn(predicate);
-		
 		when(entityManager.createQuery(criteriaQuery)).thenReturn(typedQuery);
 		when(typedQuery.getResultList()).thenReturn(companies);
 
