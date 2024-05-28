@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.arthurbandeira.manageparking.model.Company;
+import com.arthurbandeira.manageparking.model.Vehicle;
 import com.arthurbandeira.manageparking.repository.CompanyRepository;
+import com.arthurbandeira.manageparking.repository.VehicleRepository;
 
 @Service
 public class CompanyService {
 
 	@Autowired
 	private CompanyRepository companyRepository;
+	
+	@Autowired
+	private VehicleRepository vehicleRepository;
 
 	public List<Company> findAll() {
 		return companyRepository.findAll();

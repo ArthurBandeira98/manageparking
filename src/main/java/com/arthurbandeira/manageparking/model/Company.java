@@ -1,10 +1,13 @@
 package com.arthurbandeira.manageparking.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,10 +29,9 @@ public class Company {
 
 	@Column(name = "TELEFONE")
 	private String phoneNumber;
-	
-//	@OneToMany
-//	@JoinColumn(name = "ID_VEICULO")
-//	private List<Vehicle> vehicles;
+
+	@OneToMany(mappedBy = "company")
+	private List<Vehicle> vehicles;
 
 	@Column(name = "QNT_CARRO")
 	private Long quantityForCar;
@@ -101,6 +103,14 @@ public class Company {
 
 	public void setQuantityForMotorcycle(Long quantityForMotorcycle) {
 		this.quantityForMotorcycle = quantityForMotorcycle;
+	}
+
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 }

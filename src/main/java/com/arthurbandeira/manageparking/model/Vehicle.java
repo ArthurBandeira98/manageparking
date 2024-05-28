@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,18 +32,24 @@ public class Vehicle {
 	@Column(name = "TIPO")
 	private String type;
 	
+	@ManyToOne
+	@JoinColumn(name = "ID_EMPRESA")
+	private Company company;
+	
 	public Vehicle() {
 	}
 
-	public Vehicle(Long id, String brand, String model, String color, String plate, String type) {
-		super();
+	public Vehicle(Long id, String brand, String model, String color, String plate, String type, Company company) {
 		this.id = id;
 		this.brand = brand;
 		this.model = model;
 		this.color = color;
 		this.plate = plate;
 		this.type = type;
+		this.company = company;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -85,6 +93,14 @@ public class Vehicle {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 }

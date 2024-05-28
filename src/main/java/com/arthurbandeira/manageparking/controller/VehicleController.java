@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arthurbandeira.manageparking.model.Vehicle;
+import com.arthurbandeira.manageparking.request.VehicleRequest;
 import com.arthurbandeira.manageparking.service.VehicleService;
 
 @RestController
@@ -27,7 +28,7 @@ public class VehicleController {
 	}
 
 	@PostMapping
-	public Vehicle create(@RequestBody Vehicle vehicle) {
+	public Vehicle create(@RequestBody VehicleRequest vehicle) {
 		return vehicleService.create(vehicle);
 	}
 

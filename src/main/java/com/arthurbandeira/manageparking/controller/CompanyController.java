@@ -39,7 +39,7 @@ public class CompanyController {
 	public Company create(@RequestBody Company company) {
 		return companyService.create(company);
 	}
-
+	
 	@PutMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Company update(@RequestBody Company company) {
